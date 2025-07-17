@@ -6,6 +6,6 @@
 </head>
 <body>
     <h1>Benvenuto al Quiz Geografico!</h1>
-    <a href="{{ url('/quiz') }}">Inizia il Quiz</a>
+    <a href="{{ url('/quiz') }}">Indovina la capitale</a>
 </body>
 </html>

@@ -7,59 +7,78 @@ use Illuminate\Http\Request;
 
 class QuizController extends Controller
 {
-    // Pagina Home
     public function home()
     {
+        // Reset session quiz
+        session()->forget(['quiz_question', 'correct_answer', 'quiz_count']);
         return view('home');
     }
 
-    // Pagina Quiz
-
     public function quiz()
     {
+        $quizCount = session('quiz_count', 1);
+
+        if ($quizCount > 3) {
+            return redirect()->route('quiz.end');
+        }
+
         $country = Country::inRandomOrder()->first();
         $options = $this->getRandomOptions($country->capital);
 
+        session([
+            'correct_answer' => $country->capital,
+            'quiz_question' => "Qual è la capitale di " . $country->name . "?",
+            'quiz_count' => $quizCount
+        ]);
+
         $quiz = [
-            'question' => "Qual è la capitale di " . $country->name . "?",
+            'question' => session('quiz_question'),
             'options' => $options,
-            'answer' => $country->capital
+            'count' => $quizCount
         ];
 
-        // Salvo la risposta corretta in sessione
-        session(['correct_answer' => $country->capital]);
-
-        return view('quiz', compact('quiz', 'country'));
+        return view('quiz', compact('quiz'));
     }
-
 
     private function getRandomOptions($correctCapital)
     {
-        // Prende 2 capitali casuali e diverse da quella giusta
         $fakeCapitals = Country::where('capital', '!=', $correctCapital)
             ->inRandomOrder()
             ->limit(2)
             ->pluck('capital')
             ->toArray();
 
-        // Unisce quella giusta alle 2 sbagliate
         $options = array_merge($fakeCapitals, [$correctCapital]);
-
-        // Mescola in ordine casuale
         shuffle($options);
-
         return $options;
     }
 
     public function checkAnswer(Request $request)
     {
-        $answer = $request->input('answer');
-        $correctAnswer = session('correct_answer');  // prendo la risposta salvata in sessione
+        $userAnswer = $request->input('answer');
+        $correctAnswer = session('correct_answer');
+        $quizCount = session('quiz_count', 1);
+        $score = session('score', 0);
 
-        if ($answer === $correctAnswer) {
-            return "Risposta corretta!";
+        if ($userAnswer === $correctAnswer) {
+            $score++;
+            session(['score' => $score]);
         }
-        return "Risposta sbagliata!";
+
+        session(['quiz_count' => $quizCount + 1]);
+
+        return redirect()->route('quiz.show');
+    }
+
+
+    public function end()
+    {
+        $score = session('score', 0);
+        
+        // Pulizia finale opzionale
+        session()->forget(['correct_answer', 'quiz_question', 'quiz_count', 'score']);
+
+        return view('quiz-end', compact('score'));
     }
 
 }

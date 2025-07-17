@@ -1,17 +1,15 @@
-<!-- resources/views/quiz.blade.php -->
 <!DOCTYPE html>
-<html lang="it">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Quiz Geografico</title>
 </head>
 <body>
 
-    <h2>{{ $quiz['question'] }}</h2>
+    <h2>Domanda {{ $quiz['count'] }} di 3</h2>
+    <h3>{{ $quiz['question'] }}</h3>
 
     <form method="POST" action="{{ route('quiz.check') }}">
         @csrf
-
         @foreach ($quiz['options'] as $option)
             <div>
                 <label>
