@@ -17,6 +17,7 @@
         <p>Serve un po' di ripasso!</p>
     @endif
 
-    <a href="{{ url('/quiz') }}">Ricomincia</a>
+    <a href="{{ route('quiz.show') }}">Riprova quiz capitali</a>
+    <a href="{{ route('home') }}">Torna alla Home</a>
 </body>
 </html>
