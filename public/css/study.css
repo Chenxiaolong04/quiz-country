@@ -1,0 +1,122 @@
+/* Reset base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo pagina: flexbox centratura verticale e orizzontale, layout in colonna */
+body, html {
+    height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #7ab2eb, #919aa3);
+    color: #333;
+    display: flex;
+    flex-direction: column;       /* Cambiato da default row a colonna */
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Container centrale */
+body > div, body > form, body > h1, body > p, body > a {
+    max-width: 700px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Titolo principale */
+h1 {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+
+/* Immagine bandiera */
+p img {
+    width: 160px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    margin-bottom: 20px;
+}
+
+/* Testo domanda e risposta */
+p {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+p strong {
+    color: #2980b9;
+}
+
+/* Navigazione */
+.navigation {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;  /* Pulsanti in colonna, uno sotto l'altro */
+    justify-content: center;
+    gap: 15px;               /* spazio verticale tra i pulsanti */
+    width: 200px;            /* larghezza fissa per uniformare pulsanti */
+}
+
+/* Pulsanti navigazione */
+.nav-button {
+    background-color: #3498db;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    padding: 12px 28px;
+    font-size: 1em;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;  /* pulsanti full width del container navigation */
+}
+
+.nav-button:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.nav-button:not(:disabled):hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+/* Link sotto i pulsanti */
+div[style] a {
+    color: #34495e;
+    text-decoration: none;
+    font-weight: 600;
+    display: block;
+    margin-top: 20px;
+}
+
+div[style] a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    p {
+        font-size: 1em;
+    }
+
+    .nav-button {
+        padding: 10px 20px;
+        font-size: 0.95em;
+    }
+
+    .navigation {
+        width: 100%; /* su mobile può essere più larga */
+        max-width: 300px;
+    }
+}
