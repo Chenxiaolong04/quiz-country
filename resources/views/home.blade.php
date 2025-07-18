@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="home-container">
-        <a href="{{ url('/login') }}">Login</a>
+        <a href="{{ url('/login') }}" class="login-btn">Login</a>
         <div class="decorative-element"></div>
         <div class="world-icon">🌍</div>
 
