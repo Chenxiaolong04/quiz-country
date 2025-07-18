@@ -60,7 +60,7 @@ class QuizController extends Controller
 
     public function checkAnswer(Request $request)
     {
-        $userAnswer = $request->input('answer');
+        $userAnswer = $request->input('option');
         $correctAnswer = session('correct_answer');
         $quizCount = session('quiz_count', 1);
         $score = session('score', 0);
