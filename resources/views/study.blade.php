@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Modalità Studio</title>
+    <link rel="stylesheet" href="{{ asset('css/study.css') }}">
 </head>
 <body>
     <h1>Modalità Studio</h1>

@@ -4,25 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hai Vinto! - Gioco dell'Impiccato</title>
+    <link rel="stylesheet" href="{{ asset('css/hangman-win.css') }}">
 </head>
 <body>
-    <div>
-        <h1>Complimenti! Hai Vinto!</h1>
-        <h2>Hai indovinato la parola!</h2>
-        
-        <div>
-            <h3>{{ $word }}</h3>
+    <div class="win-container">
+        <div class="decorative-elements">
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
         </div>
         
-        <div>
-            <p><strong>Parola:</strong> {{ $word }}</p>
-            <p><strong>Tentativi totali:</strong> {{ $attempts }}</p>
-            <p><strong>Risultato:</strong> Vittoria!</p>
+        <div class="celebration-icon">🎉</div>
+        <h1 class="win-title">Complimenti!</h1>
+        <h2 class="win-subtitle">Hai indovinato la parola!</h2>
+        
+        <div class="word-reveal">
+            {{ $word }}
         </div>
         
-        <div>
-            <a href="{{ route('hangman.restart') }}">Gioca Ancora</a>
-            <a href="{{ route('home') }}">Torna Home</a>
+        <div class="win-stats">
+            <div class="stat-row">
+                <span class="stat-label">🎯 Parola:</span>
+                <span class="stat-value">{{ $word }}</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-label">📝 Tentativi totali:</span>
+                <span class="stat-value">{{ $attempts }}</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-label">⭐ Risultato:</span>
+                <span class="stat-value highlight">Vittoria!</span>
+            </div>
+        </div>
+        
+        <div class="action-buttons">
+            <a href="{{ route('hangman.restart') }}" class="action-btn play-again-btn">🔄 Gioca Ancora</a>
+            <a href="{{ route('home') }}" class="action-btn home-btn">🏠 Torna Home</a>
         </div>
     </div>
 </body>
