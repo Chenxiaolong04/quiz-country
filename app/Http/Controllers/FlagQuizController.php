@@ -113,6 +113,15 @@ class FlagQuizController extends Controller
     public function end()
     {
         $score = session('flag_score', 0);
+        
+        // Aggiorna il punteggio dell'utente se è loggato
+        if (session('user_nickname')) {
+            $loginController = new \App\Http\Controllers\LoginController();
+            $loginController->updateScore('flag', $score);
+        }
+        
+        // Non cancellare lo score per permettere di vedere il risultato anche al ricaricamento
+        // Cancella solo i dati della sessione di quiz, ma mantiene lo score
         session()->forget(['flag_correct', 'flag_current_question']);
         return view('flag-end', compact('score'));
     }
