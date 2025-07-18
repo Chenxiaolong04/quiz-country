@@ -18,10 +18,10 @@
             @csrf
             <div class="options">
                 @foreach ($options as $option)
-                    <div class="option-row">
-                        <input class="option-radio" type="radio" id="option_{{ $loop->index }}" name="answer" value="{{ $option['name']['common'] }}" required>
-                        <label class="option-label" for="option_{{ $loop->index }}">{{ $option['name']['common'] }}</label>
-                    </div>
+                    <label class="option-item">
+                    <input type="radio" name="option" value="{{ $option }}" class="option-radio" />
+                    <span class="option-label">{{ $option }}</span>
+                    </label>
                 @endforeach
             </div>
             <button class="submit-btn" type="submit">Invia</button>

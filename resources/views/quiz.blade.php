@@ -21,10 +21,10 @@
             @csrf
             <div class="options-container">
                 @foreach ($quiz['options'] as $option)
-                    <div class="option-item">
-                        <input class="option-radio" type="radio" id="option_{{ $loop->index }}" name="answer" value="{{ $option }}" required>
-                        <label class="option-label" for="option_{{ $loop->index }}">{{ $option }}</label>
-                    </div>
+                    <label class="option-item">
+                    <input type="radio" name="option" value="{{ $option }}" class="option-radio" />
+                    <span class="option-label">{{ $option }}</span>
+                    </label>
                 @endforeach
             </div>
 
