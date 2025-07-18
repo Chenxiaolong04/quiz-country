@@ -10,7 +10,7 @@ class QuizController extends Controller
     public function home()
     {
         // Reset session quiz
-        session()->forget(['quiz_question', 'correct_answer', 'quiz_count']);
+        session()->forget(['quiz_question', 'correct_answer', 'quiz_count', 'quiz_options', 'score']);
         return view('home');
     }
 
@@ -22,18 +22,23 @@ class QuizController extends Controller
             return redirect()->route('quiz.end');
         }
 
-        $country = Country::inRandomOrder()->first();
-        $options = $this->getRandomOptions($country->capital);
+        // Controlla se esiste già una domanda in sessione per questo quiz
+        if (!session()->has('quiz_question') || !session()->has('correct_answer')) {
+            // Genera una nuova domanda solo se non esiste già
+            $country = Country::inRandomOrder()->first();
+            $options = $this->getRandomOptions($country->capital);
 
-        session([
-            'correct_answer' => $country->capital,
-            'quiz_question' => "Qual è la capitale di " . $country->name . "?",
-            'quiz_count' => $quizCount
-        ]);
+            session([
+                'correct_answer' => $country->capital,
+                'quiz_question' => "Qual è la capitale di " . $country->name . "?",
+                'quiz_count' => $quizCount,
+                'quiz_options' => $options
+            ]);
+        }
 
         $quiz = [
             'question' => session('quiz_question'),
-            'options' => $options,
+            'options' => session('quiz_options'),
             'count' => $quizCount
         ];
 
@@ -66,6 +71,9 @@ class QuizController extends Controller
         }
 
         session(['quiz_count' => $quizCount + 1]);
+        
+        // Pulisce la domanda corrente per generarne una nuova
+        session()->forget(['correct_answer', 'quiz_question', 'quiz_options']);
 
         return redirect()->route('quiz.show');
     }
@@ -75,8 +83,8 @@ class QuizController extends Controller
     {
         $score = session('score', 0);
         
-        // Pulizia finale opzionale
-        session()->forget(['correct_answer', 'quiz_question', 'quiz_count', 'score']);
+        // Pulizia finale
+        session()->forget(['correct_answer', 'quiz_question', 'quiz_count', 'score', 'quiz_options']);
 
         return view('quiz-end', compact('score'));
     }
