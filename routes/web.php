@@ -4,8 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\FlagQuizController;
 use App\Http\Controllers\HangController;
-use App\Http\Controllers\StudyController; // <-- Aggiungi questa riga
+use App\Http\Controllers\StudyController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Log;
+
+// Route di login
+Route::get('/login', [LoginController::class, 'showLogin'])->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('login.store');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/', [QuizController::class, 'home'])->name('home');
 Route::get('/quiz', [QuizController::class, 'quiz'])->name('quiz.show');
