@@ -1,7 +1,7 @@
 # Crediti:
 - Chen Xiaolong pagina home, quiz capitale, studio.
 - Formicola Alessandro pagina quiz bandiera e css per le pagine, login.
-- Ilescu Dario quiz impiccato
+- Ilescu Dario quiz impiccato, css pagina impiccato, fix ricarica pagina quiz
 
 # Documentazione per Creare un Progetto Laravel
 
