@@ -68,7 +68,7 @@ Se la tabella non ha campi timestamps:
 ```bash
 public $timestamps = false;
 ```
-## 6. Creare un Controller
+## 4. Creare un Controller
 ```bash
 php artisan make:controller NomeController
 ```
