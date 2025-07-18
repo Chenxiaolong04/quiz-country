@@ -1,23 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Quiz Bandiere Finito</title>
+    <title>Fine Quiz Bandiere</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ asset('css/FlagEnd.css') }}">
 </head>
 <body>
-    <h1>Hai completato il quiz delle bandiere!</h1>
-    <p>Hai risposto correttamente a <strong>{{ $score }}</strong> domande su 3.</p>
+    <div class="results-container">
+        <h1 class="results-title">Hai completato il quiz delle bandiere!</h1>
+        
+        <p class="score-text">Hai risposto correttamente a <span class="score-number">{{ $score }}</span> domande su 3.</p>
 
-    @if ($score == 3)
-        <p>Sei un campione delle bandiere!</p>
-    @elseif ($score >= 2)
-        <p>Ottimo lavoro con le bandiere!</p>
-    @elseif ($score >= 1)
-        <p>Ci sei quasi... continua ad allenarti con le bandiere!</p>
-    @else
-        <p>Serve un po' di ripasso sulle bandiere!</p>
-    @endif
+        @if ($score == 3)
+            <div class="feedback-message">
+                Sei un campione delle bandiere!
+            </div>
+        @elseif ($score >= 2)
+            <div class="feedback-message">
+                Ottimo lavoro con le bandiere!
+            </div>
+        @elseif ($score >= 1)
+            <div class="feedback-message">
+                Ci sei quasi... continua ad allenarti con le bandiere!
+            </div>
+        @else
+            <div class="feedback-message">
+                Serve un po' di ripasso sulle bandiere!
+            </div>
+        @endif
 
-    <a href="{{ route('flag.quiz') }}">Riprova quiz bandiere</a>
-    <a href="{{ route('home') }}">Torna alla Home</a>
+        <div class="action-buttons">
+            <a href="{{ route('flag.quiz') }}" class="action-btn retry-btn">Riprova quiz</a>
+            <a href="{{ route('home') }}" class="action-btn home-btn">Torna alla Home</a>
+        </div>
+    </div>
 </body>
 </html>
