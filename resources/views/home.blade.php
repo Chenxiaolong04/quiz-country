@@ -8,6 +8,7 @@
     <h1>Benvenuto al Quiz Geografico!</h1>
     <a href="{{ url('/quiz') }}">Indovina la capitale</a>
     <a href="{{ url('/flag-quiz') }}">Indovina la bandiera</a>
+    <a href="{{ url('/hang') }}">Im</a>
 
 </body>
 </html>
