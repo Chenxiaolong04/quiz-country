@@ -2,26 +2,37 @@
 <html>
 <head>
     <title>Quiz Geografico</title>
+    <link rel="stylesheet" href="{{ asset('css/QuestQuiz.css') }}">
 </head>
 <body>
-
-    <h2>Domanda {{ $quiz['count'] }} di 3</h2>
-    <h3>{{ $quiz['question'] }}</h3>
-
-    <form method="POST" action="{{ route('quiz.check') }}">
-        @csrf
-        @foreach ($quiz['options'] as $option)
-            <div>
-                <label>
-                    <input type="radio" name="answer" value="{{ $option }}" required>
-                    {{ $option }}
-                </label>
+    <div class="quiz-container">
+        <div class="decorative-element"></div>
+        <div class="quiz-icon">🏛️</div>
+        
+        <div class="quiz-header">
+            <div class="question-counter">Domanda {{ $quiz['count'] }} di 3</div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: {{ ($quiz['count'] / 3) * 100 }}%"></div>
             </div>
-        @endforeach
+            <h3 class="question-title">{{ $quiz['question'] }}</h3>
+        </div>
 
-        <button type="submit">Invia</button>
-        <a href="{{ url('/') }}">Home</a>
-    </form>
+        <form class="quiz-form" method="POST" action="{{ route('quiz.check') }}">
+            @csrf
+            <div class="options-container">
+                @foreach ($quiz['options'] as $option)
+                    <div class="option-item">
+                        <input class="option-radio" type="radio" id="option_{{ $loop->index }}" name="answer" value="{{ $option }}" required>
+                        <label class="option-label" for="option_{{ $loop->index }}">{{ $option }}</label>
+                    </div>
+                @endforeach
+            </div>
 
+            <div class="form-actions">
+                <button class="action-btn submit-btn" type="submit">Invia</button>
+                <a href="{{ url('/') }}" class="action-btn home-btn">Torna alla Home</a>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

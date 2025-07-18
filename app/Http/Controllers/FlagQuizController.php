@@ -13,9 +13,23 @@ class FlagQuizController extends Controller
     {
         $quizCount = session('flag_quiz_count', 1);
         $score = session('flag_score', 0);
-
+        
         if ($quizCount > 3) {
-            return redirect()->route('flag.end');
+            session()->forget(['flag_quiz_count', 'flag_score', 'flag_correct', 'flag_current_question']);
+            $quizCount = 1;
+            $score = 0;
+            session(['flag_quiz_count' => $quizCount, 'flag_score' => $score]);
+        }
+
+        // Controlla se esiste già una domanda corrente in sessione
+        if (session('flag_current_question')) {
+            $currentQuestion = session('flag_current_question');
+            return view('flag-quiz', [
+                'flag' => $currentQuestion['flag'],
+                'options' => $currentQuestion['options'],
+                'count' => $quizCount,
+                'score' => $score,
+            ]);
         }
 
         // Ottieni tutti i paesi dall'API REST Countries
@@ -48,12 +62,20 @@ class FlagQuizController extends Controller
         $options = array_merge([$correct], $distractors);
         shuffle($options);
 
-        // Salva la risposta corretta e il conteggio in sessione
-        session(['flag_correct' => $correct['name']['common'], 'flag_quiz_count' => $quizCount, 'flag_score' => $score]);
-
         // Prepara URL bandiera
         $code = strtolower($correct['cca2']);
         $flagUrl = "https://flagcdn.com/w160/{$code}.png";
+
+        // Salva la risposta corretta, il conteggio e la domanda corrente in sessione
+        session([
+            'flag_correct' => $correct['name']['common'], 
+            'flag_quiz_count' => $quizCount, 
+            'flag_score' => $score,
+            'flag_current_question' => [
+                'flag' => $flagUrl,
+                'options' => $options
+            ]
+        ]);
 
         return view('flag-quiz', [
             'flag' => $flagUrl,
@@ -75,25 +97,23 @@ class FlagQuizController extends Controller
         if ($answer === $correct) {
             $score++;
             session(['flag_score' => $score]);
-            $message = '✅ Risposta corretta!';
-        } else {
-            $message = '❌ Risposta sbagliata. Riprova!';
         }
 
         session(['flag_quiz_count' => $quizCount + 1]);
+        
+        session()->forget('flag_current_question');
 
         if ($quizCount + 1 > 3) {
             return redirect()->route('flag.end');
         }
 
-        return redirect()->route('flag.quiz')->with('message', $message);
+        return redirect()->route('flag.quiz');
     }
 
     public function end()
     {
         $score = session('flag_score', 0);
-        // Pulizia finale opzionale
-        session()->forget(['flag_correct', 'flag_quiz_count', 'flag_score']);
+        session()->forget(['flag_correct', 'flag_current_question']);
         return view('flag-end', compact('score'));
     }
 }

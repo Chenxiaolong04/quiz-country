@@ -14,6 +14,14 @@ Route::get('/quiz/end', [QuizController::class, 'end'])->name('quiz.end');
 Route::get('/flag-quiz', [FlagQuizController::class, 'quiz'])->name('flag.quiz');
 Route::post('/flag-quiz', [FlagQuizController::class, 'checkAnswer'])->name('flag.check');
 Route::get('/flag-quiz/end', [FlagQuizController::class, 'end'])->name('flag.end');
+
+// Rotte per il gioco dell'impiccato
+Route::get('/hangman', [HangController::class, 'hang'])->name('hangman');
+Route::post('/hangman/guess', [HangController::class, 'guess'])->name('hangman.guess');
+Route::get('/hangman/win', [HangController::class, 'win'])->name('hangman.win');
+Route::get('/hangman/lose', [HangController::class, 'lose'])->name('hangman.lose');
+Route::get('/hangman/restart', [HangController::class, 'restart'])->name('hangman.restart');
+
 Route::get('/hang', [HangController::class, 'hang'])->name('hang.show');
 Route::get('/study', [StudyController::class, 'index'])->name('study.index');
 Route::post('/study/navigate', [StudyController::class, 'navigate'])->name('study.navigate');
