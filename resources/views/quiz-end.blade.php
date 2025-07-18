@@ -8,13 +8,13 @@
 <body>
     <div class="results-container">
         <h1 class="results-title">Hai completato il quiz delle capitali!</h1>
-        <p class="score-text">Hai risposto correttamente a <span class="score-number">{{ $score }}</span> domande su 3.</p>
+        <p class="score-text">Hai risposto correttamente a <span class="score-number">{{ $score }}</span> domande su 10.</p>
 
-        @if ($score == 3)
+        @if ($score == 10)
             <div class="feedback-message">Sei un campione della geografia!</div>
-        @elseif ($score >= 2)
+        @elseif ($score >= 7)
             <div class="feedback-message">Ottimo lavoro!</div>
-        @elseif ($score >= 1)
+        @elseif ($score >= 3)
             <div class="feedback-message">Ci sei quasi... continua ad allenarti!</div>
         @else
             <div class="feedback-message">Serve un po' di ripasso!</div>

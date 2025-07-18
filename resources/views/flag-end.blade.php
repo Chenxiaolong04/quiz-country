@@ -11,15 +11,15 @@
         
         <p class="score-text">Hai risposto correttamente a <span class="score-number">{{ $score }}</span> domande su 10.</p>
 
-        @if ($score == 3)
+        @if ($score == 10)
             <div class="feedback-message">
                 Sei un campione delle bandiere!
             </div>
-        @elseif ($score >= 2)
+        @elseif ($score >= 7)
             <div class="feedback-message">
                 Ottimo lavoro con le bandiere!
             </div>
-        @elseif ($score >= 1)
+        @elseif ($score >= 3)
             <div class="feedback-message">
                 Ci sei quasi... continua ad allenarti con le bandiere!
             </div>
