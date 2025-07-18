@@ -1,3 +1,8 @@
+# Crediti:
+- Chen Xiaolong pagina home, quiz capitale, studio.
+- Formicola Alessandro pagina quiz bandiera e css per le pagine, login.
+- Ilescu Dario quiz impiccato
+
 # Documentazione per Creare un Progetto Laravel
 
 Questa guida copre i comandi principali per iniziare un progetto Laravel, le configurazioni base e i problemi più comuni con le relative soluzioni.
