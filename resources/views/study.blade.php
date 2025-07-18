@@ -14,12 +14,12 @@
 
 <div class="navigation">
     <form method="POST" action="{{ route('study.navigate') }}" style="display: inline;">
-        @csrf
-        <input type="hidden" name="action" value="back">
-        <button type="submit" class="nav-button" {{ !$canGoBack ? 'disabled' : '' }}>
-            Precedente
-        </button>
-    </form>
+    @csrf
+    <input type="hidden" name="action" value="back">
+    <button type="submit" class="nav-button" {{ !$canGoBack ? 'disabled' : '' }}>
+        Precedente
+    </button>
+</form>
 
     @if($canGoForward)
         <form method="POST" action="{{ route('study.navigate') }}" style="display: inline;">
