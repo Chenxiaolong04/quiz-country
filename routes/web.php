@@ -11,6 +11,7 @@ Route::post('/quiz/check', [QuizController::class, 'checkAnswer'])->name('quiz.c
 Route::get('/quiz/end', [QuizController::class, 'end'])->name('quiz.end');
 Route::get('/flag-quiz', [FlagQuizController::class, 'quiz'])->name('flag.quiz');
 Route::post('/flag-quiz', [FlagQuizController::class, 'checkAnswer'])->name('flag.check');
+Route::get('/flag-quiz/end', [FlagQuizController::class, 'end'])->name('flag.end');
 Route::get('/log-test', function () {
     Log::debug('TEST DEBUG LOG');
     Log::error('TEST ERRORE LOG');
