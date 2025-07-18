@@ -18,7 +18,7 @@ class QuizController extends Controller
     {
         $quizCount = session('quiz_count', 1);
 
-        if ($quizCount > 3) {
+        if ($quizCount > 10) {
             return redirect()->route('quiz.end');
         }
 
@@ -80,19 +80,23 @@ class QuizController extends Controller
 
 
     public function end()
-    {
-        $score = session('score', 0);
-        
-        // Aggiorna il punteggio dell'utente se è loggato
-        if (session('user_nickname')) {
-            $loginController = new \App\Http\Controllers\LoginController();
-            $loginController->updateScore('quiz', $score);
-        }
-        
-        // Pulizia finale
-        session()->forget(['correct_answer', 'quiz_question', 'quiz_count', 'score', 'quiz_options']);
+{
+    $score = session('score', 0); // leggi prima
 
-        return view('quiz-end', compact('score'));
+    // Aggiorna il punteggio dell'utente se è loggato
+    if (session('user_nickname')) {
+        $loginController = new \App\Http\Controllers\LoginController();
+        $loginController->updateScore('quiz', $score);
     }
+
+    // MOSTRA IL PUNTEGGIO PRIMA DI CANCELLAZIONE
+    $view = view('quiz-end', compact('score'));
+
+    // Pulizia finale dopo
+    session()->forget(['correct_answer', 'quiz_question', 'quiz_count', 'score', 'quiz_options']);
+
+    return $view;
+}
+
 
 }

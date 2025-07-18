@@ -10,9 +10,9 @@
         <div class="quiz-icon">🏛️</div>
         
         <div class="quiz-header">
-            <div class="question-counter">Domanda {{ $quiz['count'] }} di 3</div>
+            <div class="question-counter">Domanda {{ $quiz['count'] }} di 10</div>
             <div class="progress-bar">
-                <div class="progress-fill" style="width: {{ ($quiz['count'] / 3) * 100 }}%"></div>
+                <div class="progress-fill" style="width: {{ ($quiz['count'] / 10) * 100 }}%"></div>
             </div>
             <h3 class="question-title">{{ $quiz['question'] }}</h3>
         </div>

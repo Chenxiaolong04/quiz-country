@@ -14,7 +14,7 @@ class FlagQuizController extends Controller
         $quizCount = session('flag_quiz_count', 1);
         $score = session('flag_score', 0);
         
-        if ($quizCount > 3) {
+        if ($quizCount > 10) {
             session()->forget(['flag_quiz_count', 'flag_score', 'flag_correct', 'flag_current_question']);
             $quizCount = 1;
             $score = 0;
@@ -103,7 +103,7 @@ class FlagQuizController extends Controller
         
         session()->forget('flag_current_question');
 
-        if ($quizCount + 1 > 3) {
+        if ($quizCount + 1 > 10) {
             return redirect()->route('flag.end');
         }
 

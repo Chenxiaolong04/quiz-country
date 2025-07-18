@@ -9,7 +9,7 @@
     <div class="results-container">
         <h1 class="results-title">Hai completato il quiz delle bandiere!</h1>
         
-        <p class="score-text">Hai risposto correttamente a <span class="score-number">{{ $score }}</span> domande su 3.</p>
+        <p class="score-text">Hai risposto correttamente a <span class="score-number">{{ $score }}</span> domande su 10.</p>
 
         @if ($score == 3)
             <div class="feedback-message">
