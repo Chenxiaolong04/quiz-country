@@ -83,6 +83,12 @@ class QuizController extends Controller
     {
         $score = session('score', 0);
         
+        // Aggiorna il punteggio dell'utente se è loggato
+        if (session('user_nickname')) {
+            $loginController = new \App\Http\Controllers\LoginController();
+            $loginController->updateScore('quiz', $score);
+        }
+        
         // Pulizia finale
         session()->forget(['correct_answer', 'quiz_question', 'quiz_count', 'score', 'quiz_options']);
 
