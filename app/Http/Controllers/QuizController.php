@@ -44,7 +44,7 @@ class QuizController extends Controller
     {
         $fakeCapitals = Country::where('capital', '!=', $correctCapital)
             ->inRandomOrder()
-            ->limit(2)
+            ->limit(3)
             ->pluck('capital')
             ->toArray();
 
