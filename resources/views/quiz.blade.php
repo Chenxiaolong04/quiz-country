@@ -20,6 +20,7 @@
         @endforeach
 
         <button type="submit">Invia</button>
+        <a href="{{ url('/') }}">Home</a>
     </form>
 
 </body>
