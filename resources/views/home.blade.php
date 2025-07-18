@@ -7,6 +7,7 @@
 </head>
 <body>
     <div class="home-container">
+        <a href="{{ url('/login') }}">Login</a>
         <div class="decorative-element"></div>
         <div class="world-icon">🌍</div>
 
@@ -30,6 +31,12 @@
                 <span class="quiz-icon">🎯</span>
                 <h3 class="quiz-title">Impiccato</h3>
                 <p class="quiz-description">Gioca al classico gioco dell'impiccato sulla Geografia!</p>
+            </a>
+
+            <a href="{{ url('/study') }}" class="quiz-card hang-card">
+                <span class="quiz-icon">📚</span>
+                <h3 class="quiz-title">Studia</h3>
+                <p class="quiz-description">Approfondisci le tue conoscenze geografiche!</p>
             </a>
         </div>
         
