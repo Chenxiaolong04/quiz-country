@@ -60,48 +60,54 @@
             width: 100%;
         }
 
+
         .options {
             margin-bottom: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
         }
 
-        .option-row {
+        .option-item {
             display: flex;
             align-items: center;
-            margin-bottom: 15px;
-            padding: 15px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.7);
+            padding: 16px 18px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.8);
             border: 2px solid transparent;
-            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            transition: all 0.3s;
             cursor: pointer;
+            position: relative;
         }
 
-        .option-row:hover {
-            background: rgba(103, 126, 234, 0.1);
+        .option-item:hover {
+            background: rgba(103,126,234,0.12);
             border-color: #667eea;
-            transform: translateX(5px);
-        }
-
-        .option-row:has(input:checked) {
-            background: rgba(103, 126, 234, 0.2);
-            border-color: #667eea;
-            box-shadow: 0 5px 15px rgba(103, 126, 234, 0.3);
+            transform: translateY(-2px);
         }
 
         .option-radio {
-            margin-right: 15px;
-            width: 20px;
-            height: 20px;
+            margin-right: 18px;
+            width: 22px;
+            height: 22px;
             accent-color: #667eea;
             cursor: pointer;
         }
 
+        .option-radio:checked + .option-label {
+            color: #667eea;
+            font-weight: 700;
+            text-shadow: 0 2px 8px rgba(103,126,234,0.12);
+        }
+
         .option-label {
-            font-size: 1.1em;
-            font-weight: 500;
+            font-size: 1.15em;
+            font-weight: 600;
             color: #2c3e50;
             cursor: pointer;
             flex-grow: 1;
+            transition: color 0.3s, font-weight 0.3s;
         }
 
         .submit-btn {

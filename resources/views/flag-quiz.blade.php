@@ -19,8 +19,8 @@
             <div class="options">
                 @foreach ($options as $option)
                     <label class="option-item">
-                    <input type="radio" name="option" value="{{ $option }}" class="option-radio" />
-                    <span class="option-label">{{ $option }}</span>
+                        <input type="radio" name="answer" value="{{ $option['name']['common'] }}" class="option-radio" />
+                        <span class="option-label">{{ $option['name']['common'] }}</span>
                     </label>
                 @endforeach
             </div>
