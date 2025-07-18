@@ -17,12 +17,12 @@
             <h3 class="question-title">{{ $quiz['question'] }}</h3>
         </div>
 
-        <form class="quiz-form" method="POST" action="{{ route('quiz.check') }}">
+        <form class="quiz-form" method="POST" action="{{ route('quiz.check') }}" onsubmit="return validateForm()">
             @csrf
             <div class="options-container">
                 @foreach ($quiz['options'] as $option)
                     <label class="option-item">
-                    <input type="radio" name="option" value="{{ $option }}" class="option-radio" />
+                    <input type="radio" name="option" value="{{ $option }}" class="option-radio" required />
                     <span class="option-label">{{ $option }}</span>
                     </label>
                 @endforeach
@@ -34,5 +34,26 @@
             </div>
         </form>
     </div>
+
+    <script>
+        function validateForm() {
+            const options = document.querySelectorAll('input[name="option"]');
+            let isSelected = false;
+            
+            for (let option of options) {
+                if (option.checked) {
+                    isSelected = true;
+                    break;
+                }
+            }
+            
+            if (!isSelected) {
+                alert('Per favore, seleziona una risposta prima di inviare!');
+                return false;
+            }
+            
+            return true;
+        }
+    </script>
 </body>
 </html>
